@@ -2,6 +2,7 @@ package main.java;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -11,8 +12,16 @@ public class Bitset<T> implements Iterable<T> {
     public Bitset() {
     }
 
-    public Bitset(Collection<T> a) {
-        this.add(a);
+    public Bitset(T input) {
+        this.add(input);
+    }
+
+    public Bitset(T[] input) {
+        this.add(input);
+    }
+
+    public Bitset(Collection<T> input) {
+        this.add(input);
     }
 
     public boolean contains(T elem) {
