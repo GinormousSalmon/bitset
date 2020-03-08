@@ -6,7 +6,14 @@ import java.util.*;
 
 
 public class Bitset<T> implements Iterable<T> {
-    ArrayList<T> data = new ArrayList<>();
+    private ArrayList<T> data = new ArrayList<>();
+
+    public Bitset() {
+    }
+
+    public Bitset(Collection<T> a) {
+        this.add(a);
+    }
 
     public boolean contains(T elem) {
         return this.data.contains(elem);
@@ -43,8 +50,8 @@ public class Bitset<T> implements Iterable<T> {
     }
 
     public void intersection(Bitset<T> a) {
-        for (T i : a)
-            if (!this.contains(i))
+        for (T i : new Bitset<T>(this.toList()))
+            if (!a.contains(i))
                 this.remove(i);
     }
 
@@ -52,6 +59,10 @@ public class Bitset<T> implements Iterable<T> {
         for (T i : a)
             if (!this.contains(i))
                 this.add(i);
+    }
+
+    public ArrayList<T> toList() {
+        return this.data;
     }
 
     @NotNull
