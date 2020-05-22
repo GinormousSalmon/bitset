@@ -20,34 +20,53 @@ public class BitSetTest {
         System.out.print(line);
     }
 
-    @Test
-    void toBinaryTest() {
-        int intToByteDivider = (int) Math.pow(2, 24);
-        Bitset bitset = new Bitset(8);
-        for (int i = 0; i < 1000; i++) {
-            byte randomByte = (byte) (rand.nextInt() / intToByteDivider);
-            boolean[] bits = new boolean[8];
-            char[] chars = Integer.toBinaryString(randomByte + 128).toCharArray();
-            for (int j = 0; j < chars.length; j++)
-                bits[j + 8 - chars.length] = chars[j] == '1';
-            Assertions.assertArrayEquals(bitset.toBinary(randomByte), bits);
-        }
-    }
-
-    @Test
-    void toDecimalTest() {
-        Bitset bitset = new Bitset(8);
-        for (int i = 0; i < 1000; i++) {
-            boolean[] bits = new boolean[8];
-            String binString = "";
-            for (int j = 0; j < 8; j++) {
-                bits[j] = rand.nextBoolean();
-                binString = binString.concat(bits[j] ? "1" : "0");
-            }
-            int number = Integer.parseInt(binString, 2) - 128;
-            Assertions.assertEquals(bitset.toDecimal(bits), number);
-        }
-    }
+//    public boolean[] toBinary(byte number) {
+//        int n = number + 128;
+//        boolean[] bin = new boolean[8];
+//        for (int i = 0; i < 8; i++) {
+//            bin[7 - i] = n % 2 == 1;
+//            n /= 2;
+//        }
+//        return bin;
+//    }
+//
+//    public byte toDecimal(boolean[] bin) {
+//        byte dec = -128;
+//        int[] coefs = {1, 2, 4, 8, 16, 32, 64, 128};
+//        for (int i = 0; i < 8; i++)
+//            if (bin[7 - i])
+//                dec += coefs[i];
+//        return dec;
+//    }
+//
+//    @Test
+//    void toBinaryTest() {
+//        int intToByteDivider = (int) Math.pow(2, 24);
+//        Bitset bitset = new Bitset(8);
+//        for (int i = 0; i < 1000; i++) {
+//            byte randomByte = (byte) (rand.nextInt() / intToByteDivider);
+//            boolean[] bits = new boolean[8];
+//            char[] chars = Integer.toBinaryString(randomByte + 128).toCharArray();
+//            for (int j = 0; j < chars.length; j++)
+//                bits[j + 8 - chars.length] = chars[j] == '1';
+//            Assertions.assertArrayEquals(toBinary(randomByte), bits);
+//        }
+//    }
+//
+//    @Test
+//    void toDecimalTest() {
+//        Bitset bitset = new Bitset(8);
+//        for (int i = 0; i < 1000; i++) {
+//            boolean[] bits = new boolean[8];
+//            String binString = "";
+//            for (int j = 0; j < 8; j++) {
+//                bits[j] = rand.nextBoolean();
+//                binString = binString.concat(bits[j] ? "1" : "0");
+//            }
+//            int number = Integer.parseInt(binString, 2) - 128;
+//            Assertions.assertEquals(toDecimal(bits), number);
+//        }
+//    }
 
     @Test
     void addRemoveTest() {
